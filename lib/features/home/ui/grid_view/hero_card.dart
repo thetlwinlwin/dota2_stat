@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dota2_stat_river/features/home/ui/grid_view/rotate_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants.dart';
@@ -34,17 +35,17 @@ class HeroCard extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Text(
-                      stat.name,
-                      overflow: TextOverflow.fade,
+                    RotateText(
+                      textList: [
+                        stat.name,
+                        '${stat.winRate.toStringAsPrecision(4)}%',
+                      ],
+                      duration: const Duration(seconds: 2),
                       style: const TextStyle(
-                        fontWeight: FontWeight.w700,
+                        overflow: TextOverflow.fade,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    Text(
-                      '${stat.winRate.toStringAsPrecision(4)}%',
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),

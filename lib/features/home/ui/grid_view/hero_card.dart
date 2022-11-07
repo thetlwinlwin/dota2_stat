@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dota2_stat_river/features/home/ui/grid_view/rotate_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants.dart';
 import '../../../shared/models/api_models/herostat_api_model.dart';
+import '../../../shared/widgets/rotate_text_animation.dart';
 
 class HeroCard extends StatelessWidget {
   final HeroStats stat;

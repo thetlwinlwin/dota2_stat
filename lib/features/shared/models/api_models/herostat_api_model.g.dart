@@ -1,0 +1,76 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'herostat_api_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$_HeroStats _$$_HeroStatsFromJson(Map<String, dynamic> json) => _$_HeroStats(
+      id: json['id'] as int,
+      name: json['localized_name'] as String,
+      attribute: json['primary_attr'] as String,
+      roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
+      img: json['img'] as String,
+      icon: json['icon'] as String,
+      power: json['base_str'] as num,
+      agile: json['base_agi'] as num,
+      wisdom: json['base_int'] as num,
+      powerGain: json['str_gain'] as num,
+      agileGain: json['agi_gain'] as num,
+      wisdomGain: json['int_gain'] as num,
+      attack: json['base_attack_max'] as num,
+      armor: json['base_armor'] as num,
+      mobile: json['move_speed'] as num,
+      pick1: json['1_pick'] as int,
+      pick2: json['2_pick'] as int,
+      pick3: json['3_pick'] as int,
+      pick4: json['4_pick'] as int,
+      pick5: json['5_pick'] as int,
+      pick6: json['6_pick'] as int,
+      pick7: json['7_pick'] as int,
+      pick8: json['8_pick'] as int,
+      win1: json['1_win'] as int,
+      win2: json['2_win'] as int,
+      win3: json['3_win'] as int,
+      win4: json['4_win'] as int,
+      win5: json['5_win'] as int,
+      win6: json['6_win'] as int,
+      win7: json['7_win'] as int,
+      win8: json['8_win'] as int,
+    );
+
+Map<String, dynamic> _$$_HeroStatsToJson(_$_HeroStats instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'localized_name': instance.name,
+      'primary_attr': instance.attribute,
+      'roles': instance.roles,
+      'img': instance.img,
+      'icon': instance.icon,
+      'base_str': instance.power,
+      'base_agi': instance.agile,
+      'base_int': instance.wisdom,
+      'str_gain': instance.powerGain,
+      'agi_gain': instance.agileGain,
+      'int_gain': instance.wisdomGain,
+      'base_attack_max': instance.attack,
+      'base_armor': instance.armor,
+      'move_speed': instance.mobile,
+      '1_pick': instance.pick1,
+      '2_pick': instance.pick2,
+      '3_pick': instance.pick3,
+      '4_pick': instance.pick4,
+      '5_pick': instance.pick5,
+      '6_pick': instance.pick6,
+      '7_pick': instance.pick7,
+      '8_pick': instance.pick8,
+      '1_win': instance.win1,
+      '2_win': instance.win2,
+      '3_win': instance.win3,
+      '4_win': instance.win4,
+      '5_win': instance.win5,
+      '6_win': instance.win6,
+      '7_win': instance.win7,
+      '8_win': instance.win8,
+    };

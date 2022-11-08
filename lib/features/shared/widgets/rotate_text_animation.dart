@@ -112,13 +112,16 @@ class _RotateTextState extends State<RotateText> with TickerProviderStateMixin {
         style: widget.style,
       ),
       builder: (context, child) {
-        return SizedBox(
-          height: fontSize! * 10 / 5,
-          child: AlignTransition(
-            alignment: _slideIn.value.y != 0.0 ? _slideIn : _slideOut,
-            child: Opacity(
-              opacity: _fadeIn.value != 1.0 ? _fadeIn.value : _fadeOut.value,
-              child: child!,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: SizedBox(
+            height: fontSize! * 10 / 5,
+            child: AlignTransition(
+              alignment: _slideIn.value.y != 0.0 ? _slideIn : _slideOut,
+              child: Opacity(
+                opacity: _fadeIn.value != 1.0 ? _fadeIn.value : _fadeOut.value,
+                child: child!,
+              ),
             ),
           ),
         );

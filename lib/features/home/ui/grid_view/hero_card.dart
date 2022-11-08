@@ -42,9 +42,9 @@ class HeroCard extends StatelessWidget {
                       ],
                       duration: const Duration(seconds: 2),
                       style: const TextStyle(
-                        overflow: TextOverflow.fade,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],

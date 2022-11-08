@@ -5,7 +5,7 @@ import '../../../providers/connectivity_service.dart';
 import '../../../providers/herostat_api_service.dart';
 import '../../../providers/setting_service.dart';
 import '../../shared/widgets/app_bar.dart';
-import '../../shared/widgets/app_drawer.dart';
+import '../../app_drawer/app_drawer.dart';
 import 'grid_view/grid_body.dart';
 import 'page_view/page_body.dart';
 

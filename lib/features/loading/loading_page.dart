@@ -24,6 +24,9 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
       ref.read(heroStatapiStateProvider);
       ref.read(idStatApiStateProvider);
       ref.read(recentMatchesProvider);
+      if (data.isGuest) {
+        ref.read(idStatApiStateProvider.notifier).reset(data: data);
+      }
     });
   }
 

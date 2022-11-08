@@ -28,6 +28,8 @@ A new Flutter project.
 - Altho it is not encouraging to use cascade operator, it is used in herostatprovider as it just need to load from the network.
 - Stretching the column in page_viewer_build.dart to get all the available width.
 - Matrix in PageView.builder is from [this link](https://www.youtube.com/watch?v=U61kyISnPZQ&t=1919s).
+- Staggered animation for menu list items was added in menu_list.dart. heavily inspired from [flutter officials](https://docs.flutter.dev/cookbook/effects/staggered-menu-animation).
+- Rotated Text is also added in gridview.
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

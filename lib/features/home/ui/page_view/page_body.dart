@@ -9,6 +9,7 @@ import '../../../../utils/constants.dart';
 import '../../../shared/models/api_models/herostat_api_model.dart';
 import '../../models/hero_table_model.dart';
 import '../../provider/page_index.dart';
+import '../../provider/sorting_heroes.dart';
 import 'hero_data_view.dart';
 import 'page_viewer_build.dart';
 
@@ -18,10 +19,17 @@ class PageBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(heroStatapiStateProvider);
+    final sortingType = ref.watch(heroSortingProvider);
 
     return state.when(
       data: (topheroes) {
-        return HomePageView(stats: topheroes);
+        final List<HeroStats> result = List.from(topheroes);
+        if (sortingType != HeroSortTypes.name) {
+          result.sort(
+            (a, b) => b.winRate.compareTo(a.winRate),
+          );
+        }
+        return HomePageView(stats: result);
       },
       loading: () => const Center(child: CircularProgressIndicator.adaptive()),
       error: (message) => Center(

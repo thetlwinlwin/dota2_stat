@@ -12,7 +12,7 @@ A new Flutter project.
 - Use listen method to listen the another state notifier. Then you call your method to modify state of that provider inside the callback function.
 
 ```
-     final notifier = IdStatApiStateNotifier(
+  final notifier = IdStatApiStateNotifier(
     repo: ref.watch(repositoryProvider),
   );
   ref.listen(
@@ -30,6 +30,7 @@ A new Flutter project.
 - Matrix in PageView.builder is from [this link](https://www.youtube.com/watch?v=U61kyISnPZQ&t=1919s).
 - Staggered animation for menu list items was added in menu_list.dart. heavily inspired from [flutter officials](https://docs.flutter.dev/cookbook/effects/staggered-menu-animation).
 - Rotated Text is also added in gridview.
+- Added sorting to heroList.
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

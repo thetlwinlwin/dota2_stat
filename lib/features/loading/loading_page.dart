@@ -1,8 +1,8 @@
-import 'package:dota2_stat_river/providers/herostat_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/app_state.dart';
+import '../../providers/herostat_api_service.dart';
 import '../../providers/idstat_api_service.dart';
 import '../../providers/recents_api_service.dart';
 import '../../providers/user_service.dart';
@@ -24,7 +24,8 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
       ref.read(heroStatapiStateProvider);
       ref.read(idStatApiStateProvider);
       ref.read(recentMatchesProvider);
-      if (data.isGuest) {
+      if (data.isGuest || data.steamId != null) {
+        ref.read(recentMatchesProvider.notifier).getRecents(data: data);
         ref.read(idStatApiStateProvider.notifier).reset(data: data);
       }
     });

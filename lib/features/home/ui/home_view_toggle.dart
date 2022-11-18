@@ -66,7 +66,7 @@ class IosViewIcon implements _PlatformViewIcon {
     required bool isGrid,
   }) {
     return isGrid
-        ? const Icon(CupertinoIcons.rectangle_grid_2x2)
-        : const Icon(CupertinoIcons.rectangle_on_rectangle_angled);
+        ? const Icon(CupertinoIcons.rectangle_on_rectangle_angled)
+        : const Icon(CupertinoIcons.rectangle_grid_2x2);
   }
 }

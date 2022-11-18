@@ -15,7 +15,7 @@ class ThemeSwitcher extends ConsumerWidget {
       onPressed: () {
         ref.read(settingDataProvider.notifier).toggleMode();
       },
-      icon: _PlatformThemeMode(Theme.of(context).platform).build(
+      icon: _PlatformThemeModeIcon(Theme.of(context).platform).build(
         context: context,
         isDark: val,
       ),
@@ -23,8 +23,8 @@ class ThemeSwitcher extends ConsumerWidget {
   }
 }
 
-abstract class _PlatformThemeMode {
-  factory _PlatformThemeMode(TargetPlatform platform) {
+abstract class _PlatformThemeModeIcon {
+  factory _PlatformThemeModeIcon(TargetPlatform platform) {
     switch (platform) {
       case TargetPlatform.android:
         return AndroidModeIcon();
@@ -41,7 +41,7 @@ abstract class _PlatformThemeMode {
   });
 }
 
-class AndroidModeIcon implements _PlatformThemeMode {
+class AndroidModeIcon implements _PlatformThemeModeIcon {
   @override
   Icon build({
     required BuildContext context,
@@ -53,7 +53,7 @@ class AndroidModeIcon implements _PlatformThemeMode {
   }
 }
 
-class IosModeIcon implements _PlatformThemeMode {
+class IosModeIcon implements _PlatformThemeModeIcon {
   @override
   Icon build({
     required BuildContext context,

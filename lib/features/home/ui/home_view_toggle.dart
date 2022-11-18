@@ -17,7 +17,7 @@ class HomeViewToggle extends ConsumerWidget {
       onPressed: () {
         ref.read(settingDataProvider.notifier).toggleview();
       },
-      icon: _PlatformViewToggle(Theme.of(context).platform).build(
+      icon: _PlatformViewIcon(Theme.of(context).platform).build(
         context: context,
         iconColor: iconColor,
         isGrid: isGrid,
@@ -26,15 +26,15 @@ class HomeViewToggle extends ConsumerWidget {
   }
 }
 
-abstract class _PlatformViewToggle {
-  factory _PlatformViewToggle(TargetPlatform platform) {
+abstract class _PlatformViewIcon {
+  factory _PlatformViewIcon(TargetPlatform platform) {
     switch (platform) {
       case TargetPlatform.android:
-        return AndroidModeIcon();
+        return AndroidViewIcon();
       case TargetPlatform.iOS:
-        return IosModeIcon();
+        return IosViewIcon();
       default:
-        return IosModeIcon();
+        return IosViewIcon();
     }
   }
 
@@ -45,7 +45,7 @@ abstract class _PlatformViewToggle {
   });
 }
 
-class AndroidModeIcon implements _PlatformViewToggle {
+class AndroidViewIcon implements _PlatformViewIcon {
   @override
   Icon build({
     required BuildContext context,
@@ -58,7 +58,7 @@ class AndroidModeIcon implements _PlatformViewToggle {
   }
 }
 
-class IosModeIcon implements _PlatformViewToggle {
+class IosViewIcon implements _PlatformViewIcon {
   @override
   Icon build({
     required BuildContext context,

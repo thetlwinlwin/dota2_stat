@@ -1,7 +1,7 @@
-import 'package:dota2_stat_river/providers/recents_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../providers/recents_api_service.dart';
 import '../../shared/widgets/app_bar.dart';
 
 class RecentPage extends StatelessWidget {

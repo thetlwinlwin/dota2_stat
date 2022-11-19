@@ -25,12 +25,8 @@ class NameTag extends StatelessWidget {
         ),
       ),
       label: Text(name),
-      labelStyle: TextStyle(
-        overflow: TextOverflow.fade,
-        color: _getColor(),
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
+      labelStyle:
+          Theme.of(context).textTheme.bodyText1?.copyWith(color: _getColor()),
       labelPadding: const EdgeInsets.only(top: 5, bottom: 5, right: 5),
       avatar: CircleAvatar(
         backgroundColor: Colors.transparent,

@@ -9,7 +9,8 @@ class HomeViewToggle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final iconColor = Theme.of(context).colorScheme.primary;
+    final theme = Theme.of(context);
+    final iconColor = theme.colorScheme.secondary;
     final isGrid =
         ref.watch(settingDataProvider.select((value) => value.isGrid));
 
@@ -17,7 +18,7 @@ class HomeViewToggle extends ConsumerWidget {
       onPressed: () {
         ref.read(settingDataProvider.notifier).toggleview();
       },
-      icon: _PlatformViewIcon(Theme.of(context).platform).build(
+      icon: _PlatformViewIcon(theme.platform).build(
         context: context,
         iconColor: iconColor,
         isGrid: isGrid,
@@ -66,7 +67,13 @@ class IosViewIcon implements _PlatformViewIcon {
     required bool isGrid,
   }) {
     return isGrid
-        ? const Icon(CupertinoIcons.rectangle_on_rectangle_angled)
-        : const Icon(CupertinoIcons.rectangle_grid_2x2);
+        ? Icon(
+            CupertinoIcons.rectangle_on_rectangle_angled,
+            color: iconColor,
+          )
+        : Icon(
+            CupertinoIcons.rectangle_grid_2x2,
+            color: iconColor,
+          );
   }
 }

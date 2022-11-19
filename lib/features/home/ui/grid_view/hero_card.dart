@@ -41,11 +41,7 @@ class HeroCard extends StatelessWidget {
                         '${stat.winRate.toStringAsPrecision(4)}%',
                       ],
                       duration: const Duration(seconds: 2),
-                      style: const TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1!,
                     ),
                   ],
                 ),

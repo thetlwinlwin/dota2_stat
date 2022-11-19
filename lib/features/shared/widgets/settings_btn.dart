@@ -6,12 +6,11 @@ class SettingsBtn extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorSch = Theme.of(context).colorScheme;
     return IconButton(
       onPressed: () => Scaffold.of(context).openEndDrawer(),
       icon: Icon(
         Icons.menu,
-        color: colorSch.primary,
+        color: Theme.of(context).colorScheme.secondary,
       ),
     );
   }

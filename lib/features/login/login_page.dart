@@ -34,10 +34,7 @@ class LoginPage extends ConsumerWidget {
                   },
                   child: Text(
                     'continue as a guest',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      decorationStyle: TextDecorationStyle.solid,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                 ),
               ],

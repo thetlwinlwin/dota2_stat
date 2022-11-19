@@ -41,6 +41,7 @@ class _ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String url = result.profile!.avatarmedium ?? '';
+    final theme = Theme.of(context).textTheme;
     return ProfileCardContainer(
       isCenter: false,
       child: Column(
@@ -55,9 +56,7 @@ class _ProfileCard extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
               result.profile!.personaname,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4
+              style: theme.headline4
                   ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
@@ -68,9 +67,7 @@ class _ProfileCard extends StatelessWidget {
           ),
           Text(
             'current MMR : ${result.competitiveRank ?? 'none'}',
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
+            style: theme.bodyText1
                 ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
           ),
         ],

@@ -14,8 +14,8 @@ class MyCustomAppBar extends AppBar {
           key: key,
           actions: [
             if (titleText != null) const HomeViewToggle(),
-            const SettingsBtn(),
             if (widgets != null && widgets.isNotEmpty) ...widgets,
+            const SettingsBtn(),
           ],
           title: Text(
             titleText ?? "Dota2",

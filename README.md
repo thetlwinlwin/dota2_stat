@@ -2,8 +2,7 @@
 
 A new Flutter project.
 
-## Getting Started
-
+## What I have learnt(check cfa80c84478f48e53d8e8b3c87cfcc49bd9013ff and their ancestors)
 - Read the state notifier providers in loading page state.
 ```
  ref.read(idStatApiStateProvider);
@@ -31,6 +30,13 @@ A new Flutter project.
 - Staggered animation for menu list items was added in menu_list.dart. heavily inspired from [flutter officials](https://docs.flutter.dev/cookbook/effects/staggered-menu-animation).
 - Rotated Text is also added in gridview.
 - Added sorting to heroList.
+
+## What I have learnt(after cfa80c84478f48e53d8e8b3c87cfcc49bd9013ff)
+
+- refactor the dark and light theme.
+- sorting list was moved out from the ui layers and used "compute" function.
+- convert heroStats and recents state notifier provider to future provider.
+- idStat remains the same.
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

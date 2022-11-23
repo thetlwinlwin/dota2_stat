@@ -54,7 +54,7 @@ class _IdTextState extends ConsumerState<IdText> {
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.done,
         onSubmitted: (value) {
-          ref.read(userDataProvider.notifier).idLogin(id: value);
+          ref.read(userDataStateNotifierProvider.notifier).idLogin(id: value);
         },
         inputFormatters: [
           FilteringTextInputFormatter(RegExp(r'(\d+)'), allow: true)

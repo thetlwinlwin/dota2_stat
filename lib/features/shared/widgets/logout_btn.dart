@@ -9,7 +9,8 @@ class LogoutBtn extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
-      onPressed: () => ref.read(userDataProvider.notifier).logout(),
+      onPressed: () =>
+          ref.read(userDataStateNotifierProvider.notifier).logout(),
       icon: const Icon(Icons.logout),
       color: Theme.of(context).colorScheme.secondary,
     );

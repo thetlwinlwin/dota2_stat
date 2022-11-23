@@ -35,8 +35,9 @@ A new Flutter project.
 
 - refactor the dark and light theme.
 - sorting list was moved out from the ui layers and used "compute" function.
-- convert heroStats and recents state notifier provider to future provider.
-- idStat remains the same.
+- convert idstats, heroStats and recents state notifier provider to future provider.
+- the biggest drawback of converting to futureprovider is that there are loading everywhere.
+
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

@@ -12,7 +12,7 @@ class MenuProfile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(idStatApiStateProvider).when(
+    return ref.watch(idStatProvider).when(
           data: (result) {
             return _ProfileCard(
               result: result,
@@ -21,9 +21,11 @@ class MenuProfile extends ConsumerWidget {
           loading: () => const ProfileCardContainer(
             child: CircularProgressIndicator.adaptive(),
           ),
-          error: (message) => ProfileCardContainer(
+          error: (message, _) => ProfileCardContainer(
             child: Text(
-              message == WrongIdException().toString() ? message : '',
+              message.toString() == WrongIdException().toString()
+                  ? message.toString()
+                  : '',
               style: Theme.of(context).textTheme.headline3,
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:dota2_stat_river/features/shared/models/stored_data/user_data.dart';
-import 'package:dota2_stat_river/providers/user_service.dart';
+import '../features/shared/models/stored_data/user_data.dart';
+import 'user_service.dart';
 
 class AppState {
   final bool doneInit;
@@ -22,7 +22,7 @@ final appstateNotifierProvider =
     StateNotifierProvider<AppStateNotifier, AppState>((ref) {
   final notifier = AppStateNotifier();
   ref.listen(
-    userDataProvider,
+    userDataStateNotifierProvider,
     (_, next) {
       notifier.loadData(data: next);
     },

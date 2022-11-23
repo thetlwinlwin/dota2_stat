@@ -118,7 +118,7 @@ class _MenuItemCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isEnabled = ref.watch(idStatApiStateProvider).maybeWhen(
+    final isEnabled = ref.watch(idStatProvider).maybeWhen(
           data: (result) => result.profile!.isGuest ? true : false,
           orElse: () => false,
         );

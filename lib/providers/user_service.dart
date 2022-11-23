@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../features/shared/models/stored_data/user_data.dart';
 import 'load_local_shared.dart';
 
-final userDataProvider =
+final userDataStateNotifierProvider =
     StateNotifierProvider<UserDataNotifier, UserData>((ref) {
   return UserDataNotifier(pref: ref.watch(sharedProvider))..ready();
 });

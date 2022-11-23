@@ -30,7 +30,9 @@ class LoginPage extends ConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    ref.read(userDataProvider.notifier).guestLogin();
+                    ref
+                        .read(userDataStateNotifierProvider.notifier)
+                        .guestLogin();
                   },
                   child: Text(
                     'continue as a guest',

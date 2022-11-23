@@ -37,7 +37,7 @@ class RecentBody extends ConsumerWidget {
         itemCount: recentMatches.length,
       ),
       loading: () => const Center(child: CircularProgressIndicator.adaptive()),
-      error: (message) => Center(child: Text(message)),
+      error: (message, _) => Center(child: Text(message.toString())),
     );
   }
 }

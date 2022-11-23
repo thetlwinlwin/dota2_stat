@@ -21,11 +21,10 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
     Future.delayed(const Duration(seconds: 2), () {
       final data = ref.read(userDataProvider);
       ref.read(appstateNotifierProvider.notifier).loadData(data: data);
-      ref.read(heroStatapiStateProvider);
+      // pre-reading in loading time.
+      ref.read(heroStatResultsProvider);
       ref.read(idStatApiStateProvider);
-      ref.read(recentMatchesProvider);
       if (data.isGuest || data.steamId != null) {
-        ref.read(recentMatchesProvider.notifier).getRecents(data: data);
         ref.read(idStatApiStateProvider.notifier).reset(data: data);
       }
     });

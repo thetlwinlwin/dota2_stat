@@ -1,26 +1,37 @@
+import 'package:dota2_stat_river/features/shared/models/api_models/herostat_api_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../features/shared/models/api_result_stages/hero_stats_result.dart';
 import 'http_service.dart';
 
-class HeroStatApiNotifier extends StateNotifier<HeroStatsApiResult> {
-  HeroStatApiNotifier({required Repository repo})
-      : _repo = repo,
-        super(const HeroStatsApiResult.loading());
-
-  final Repository _repo;
-  void getStats() async {
-    try {
-      final result = await _repo.getStats();
-      state = HeroStatsApiResult.data(topheroes: result);
-    } catch (e) {
-      state = HeroStatsApiResult.error(e.toString());
-    }
-  }
+enum HeroSortTypes {
+  name,
+  winRate,
 }
 
-final heroStatapiStateProvider =
-    StateNotifierProvider<HeroStatApiNotifier, HeroStatsApiResult>((ref) {
-  // this does not depend on the userdata so that it can be loaded once the app start.
-  return HeroStatApiNotifier(repo: ref.watch(repositoryProvider))..getStats();
+final heroSortingProvider = StateProvider<HeroSortTypes>((ref) {
+  return HeroSortTypes.name;
 });
+
+final heroStatResultsProvider = FutureProvider<List<HeroStats>>((ref) async {
+  final repo = ref.watch(repositoryProvider);
+  final sortingType = ref.watch(heroSortingProvider);
+  final results = await repo.getStats();
+
+  if (sortingType == HeroSortTypes.winRate) {
+    return await _computeSort(results);
+  }
+  return results;
+});
+
+Future<List<HeroStats>> _computeSort(List<HeroStats> results) {
+  return compute(_sort, results);
+}
+
+List<HeroStats> _sort(List<HeroStats> results) {
+  final List<HeroStats> toSort = List.from(results);
+  toSort.sort(
+    (a, b) => b.winRate.compareTo(a.winRate),
+  );
+  return toSort;
+}

@@ -36,7 +36,7 @@ class Repository {
         if (result.profile != null) {
           return result;
         } else {
-          throw NoRecentException();
+          throw WrongIdException();
         }
       } else {
         throw GenericException(callResult.body);
@@ -54,7 +54,7 @@ class Repository {
         final data = callResult.body;
         final result = await RecentMatches.getJson(data);
         if (result.isEmpty) {
-          throw WrongIdException();
+          throw NoRecentException();
         }
         return result;
       } else {

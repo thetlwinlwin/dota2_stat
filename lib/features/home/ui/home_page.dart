@@ -22,7 +22,7 @@ class HomePage extends ConsumerWidget {
         sca.showSnackBar(
             const SnackBar(content: Text('Device is disconnected.')));
       } else {
-        ref.invalidate(heroStatapiStateProvider);
+        ref.invalidate(heroStatResultsProvider);
       }
     });
 
@@ -36,7 +36,7 @@ class HomePage extends ConsumerWidget {
       ),
       endDrawer: const AppDrawer(),
       body: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(heroStatapiStateProvider),
+        onRefresh: () async => ref.invalidate(heroStatResultsProvider),
         child: SafeArea(
           child: isGrid ? const GridBody() : const PageBody(),
         ),

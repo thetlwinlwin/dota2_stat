@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../provider/sorting_heroes.dart';
+import '../../../providers/herostat_api_service.dart';
 
 class HeroSortbtn extends ConsumerWidget {
   const HeroSortbtn({super.key});

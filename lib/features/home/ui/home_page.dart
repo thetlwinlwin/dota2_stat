@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../providers/connectivity_service.dart';
 import '../../../providers/herostat_api_service.dart';
+import '../../../providers/idstat_api_service.dart';
 import '../../../providers/setting_service.dart';
 import '../../app_drawer/app_drawer.dart';
 import '../../shared/widgets/app_bar.dart';
@@ -15,6 +16,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.read(idStatProvider);
     ref.listen(conStatusProvider, (previous, next) {
       if (next == ConStatus.off) {
         final sca = ScaffoldMessenger.of(context);

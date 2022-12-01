@@ -37,6 +37,7 @@ A new Flutter project.
 - sorting list was moved out from the ui layers and used "compute" function.
 - convert idstats, heroStats and recents state notifier provider to future provider.
 - the biggest drawback of converting to futureprovider is that there are loading everywhere.
+- preload idstat future provider in home page.
 
 
 For help getting started with Flutter development, view the

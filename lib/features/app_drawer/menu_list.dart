@@ -34,6 +34,7 @@ class __MenuItemsState extends State<_MenuItems>
   late AnimationController _staggerController;
 
   static List<String> menuTitles = [
+    AppRoutes.home.name,
     AppRoutes.subRecents.name,
     AppRoutes.subStats.name
   ];

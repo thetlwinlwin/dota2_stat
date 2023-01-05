@@ -1,3 +1,4 @@
+import 'package:dota2_stat_river/features/app_drawer/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,6 +11,7 @@ class RecentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const AppDrawer(),
       appBar: MyCustomAppBar(titleText: 'Recents'),
       body: const SafeArea(child: RecentBody()),
     );

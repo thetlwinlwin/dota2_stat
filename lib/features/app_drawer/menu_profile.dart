@@ -22,11 +22,13 @@ class MenuProfile extends ConsumerWidget {
             child: CircularProgressIndicator.adaptive(),
           ),
           error: (message, _) => ProfileCardContainer(
-            child: Text(
-              message.toString() == WrongIdException().toString()
-                  ? message.toString()
-                  : '',
-              style: Theme.of(context).textTheme.headline3,
+            child: FittedBox(
+              child: Text(
+                message.toString() == WrongIdException().toString()
+                    ? message.toString()
+                    : '',
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ),
           ),
         );
@@ -55,11 +57,13 @@ class _ProfileCard extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(
-              result.profile!.personaname,
-              style: theme.headline4
-                  ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+            padding: const EdgeInsets.all(10),
+            child: FittedBox(
+              child: Text(
+                result.profile!.personaname,
+                style: theme.headline4
+                    ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+              ),
             ),
           ),
           const Flexible(

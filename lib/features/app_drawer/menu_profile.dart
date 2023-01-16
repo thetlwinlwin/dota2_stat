@@ -26,7 +26,7 @@ class MenuProfile extends ConsumerWidget {
               child: Text(
                 message.toString() == WrongIdException().toString()
                     ? message.toString()
-                    : '',
+                    : ' ',
                 style: Theme.of(context).textTheme.headline3,
               ),
             ),
@@ -60,7 +60,7 @@ class _ProfileCard extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: FittedBox(
               child: Text(
-                result.profile!.personaname,
+                result.profile?.personaname ?? ' ',
                 style: theme.headline4
                     ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
               ),

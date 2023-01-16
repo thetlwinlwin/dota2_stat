@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recents_api_model.g.dart';
@@ -34,6 +35,14 @@ class RecentMatches with _$RecentMatches {
       _$RecentMatchesFromJson(json);
 
   bool get isRadient => playerSlot <= 127;
+
+  String get getTime {
+    final fromUnixToLocal =
+        DateTime.fromMillisecondsSinceEpoch(startTime * 1000, isUtc: false);
+    final startTimeStrList = fromUnixToLocal.toIso8601String().split('T');
+    final timeOfDay = TimeOfDay.fromDateTime(fromUnixToLocal);
+    return '${startTimeStrList[0]} ${timeOfDay.hour}:${timeOfDay.minute}${timeOfDay.period.name}';
+  }
 
   static List<RecentMatches> _decodeAndParse(String jsonBody) {
     final List<dynamic> json = jsonDecode(jsonBody);

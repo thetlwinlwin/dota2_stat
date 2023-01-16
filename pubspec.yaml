@@ -73,7 +73,8 @@ flutter:
     - loading.gif
     - mock_herostat.json
     - steam_logo.png
-    - game_constants.json
+    - assets/game_mode.json
+    - assets/lobby_type.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

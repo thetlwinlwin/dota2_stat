@@ -1,8 +1,8 @@
+import 'package:dota2_stat_river/providers/game_constants_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/app_state.dart';
-import '../../providers/idstat_api_service.dart';
 import '../../providers/user_service.dart';
 
 class LoadingPage extends ConsumerStatefulWidget {
@@ -19,6 +19,7 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
     Future.delayed(const Duration(seconds: 2), () {
       final data = ref.read(userDataStateNotifierProvider);
       ref.read(appstateNotifierProvider.notifier).loadData(data: data);
+      ref.read(gameConstantsProvider);
     });
   }
 

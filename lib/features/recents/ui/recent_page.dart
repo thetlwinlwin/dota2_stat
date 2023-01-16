@@ -1,4 +1,5 @@
 import 'package:dota2_stat_river/features/app_drawer/app_drawer.dart';
+import 'package:dota2_stat_river/providers/game_constants_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,16 +25,36 @@ class RecentBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final result = ref.watch(recentMatchesProvider);
+    final constants = ref.watch(gameConstantsProvider).value;
 
     return result.when(
       data: (recentMatches) => ListView.builder(
         itemBuilder: (context, index) {
-          const String gameMode = 'unknown';
+          final recent = recentMatches[index];
+          final String lobbyType = constants?.getType(
+                lobbyTypeNum: recent.lobbyType,
+              ) ??
+              'Unknown';
+          final String gameMode = constants?.getMode(
+                modeNum: recent.gameMode,
+              ) ??
+              'Unknown';
+
           return ListTile(
-            title: Text(
-              recentMatches[index].matchId.toString(),
+            title: Row(
+              children: [
+                Text(
+                  recent.matchId.toString(),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  recent.getTime.toString(),
+                ),
+              ],
             ),
-            subtitle: const Text(gameMode),
+            subtitle: Text(lobbyType),
           );
         },
         itemCount: recentMatches.length,

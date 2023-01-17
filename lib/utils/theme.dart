@@ -79,10 +79,19 @@ ListTileThemeData _lightlistTileTheme = _darklistTileTheme.copyWith(
   textColor: _lightColorScheme.onTertiaryContainer,
 );
 
-const AppBarTheme _defaultAppBarTheme = AppBarTheme(
+AppBarTheme _darkAppBarTheme = AppBarTheme(
   titleSpacing: 20,
-  backgroundColor: Colors.transparent,
+  backgroundColor: _darkColorScheme.background,
   elevation: 0,
+  titleTextStyle: _darkheadline3,
+  iconTheme: IconThemeData(color: _darkColorScheme.secondary),
+);
+AppBarTheme _lightAppBarTheme = AppBarTheme(
+  titleSpacing: 20,
+  backgroundColor: Colors.white,
+  elevation: 0,
+  titleTextStyle: _lightheadline3,
+  iconTheme: IconThemeData(color: _lightColorScheme.secondary),
 );
 
 const BorderSide _defaultBorderSide = BorderSide(width: 2);
@@ -103,9 +112,7 @@ ThemeData mydarkTheme = ThemeData(
     clipBehavior: Clip.antiAlias,
     elevation: 0,
   ),
-  appBarTheme: _defaultAppBarTheme.copyWith(
-    titleTextStyle: _darkheadline3,
-  ),
+  appBarTheme: _darkAppBarTheme,
   listTileTheme: _darklistTileTheme,
   inputDecorationTheme: _defaultInputTheme.copyWith(
     suffixIconColor: _darkColorScheme.secondary,
@@ -132,9 +139,7 @@ ThemeData mylightTheme = ThemeData(
     elevation: 0,
   ),
   colorScheme: _lightColorScheme,
-  appBarTheme: _defaultAppBarTheme.copyWith(
-    titleTextStyle: _lightheadline3,
-  ),
+  appBarTheme: _lightAppBarTheme,
   listTileTheme: _lightlistTileTheme,
   inputDecorationTheme: _defaultInputTheme.copyWith(
     suffixIconColor: _lightColorScheme.secondary,

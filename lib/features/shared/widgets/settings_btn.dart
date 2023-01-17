@@ -8,10 +8,7 @@ class SettingsBtn extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
       onPressed: () => Scaffold.of(context).openEndDrawer(),
-      icon: Icon(
-        Icons.menu,
-        color: Theme.of(context).colorScheme.secondary,
-      ),
+      icon: const Icon(Icons.menu),
     );
   }
 }

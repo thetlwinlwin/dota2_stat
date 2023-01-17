@@ -34,14 +34,34 @@ class RecentMatches with _$RecentMatches {
   factory RecentMatches.fromJson(Map<String, dynamic> json) =>
       _$RecentMatchesFromJson(json);
 
-  bool get isRadient => playerSlot <= 127;
-
   String get getTime {
-    final fromUnixToLocal =
-        DateTime.fromMillisecondsSinceEpoch(startTime * 1000, isUtc: false);
-    final startTimeStrList = fromUnixToLocal.toIso8601String().split('T');
+    final fromUnixToLocal = DateTime.fromMillisecondsSinceEpoch(
+      startTime * 1000,
+      isUtc: false,
+    );
+    final startTimeDate = fromUnixToLocal.toIso8601String().split('T')[0];
     final timeOfDay = TimeOfDay.fromDateTime(fromUnixToLocal);
-    return '${startTimeStrList[0]} ${timeOfDay.hour}:${timeOfDay.minute}${timeOfDay.period.name}';
+    return '$startTimeDate ${_stdTime(timeOfDay)}';
+  }
+
+  String get getTeam => playerSlot <= 127 ? 'Radient' : 'Dire';
+
+  bool get getResult =>
+      radiantWin && playerSlot <= 127 || !radiantWin && playerSlot > 127;
+
+  String get getPartySize => 'x$partySize';
+
+  String _stdTime(TimeOfDay timeOfDay) {
+    final hour = _addLeadingZeroIfNeeded(timeOfDay.hour);
+    final min = _addLeadingZeroIfNeeded(timeOfDay.minute);
+    return '$hour:$min ${timeOfDay.period.name}';
+  }
+
+  String _addLeadingZeroIfNeeded(int value) {
+    if (value < 10) {
+      return '0$value';
+    }
+    return value.toString();
   }
 
   static List<RecentMatches> _decodeAndParse(String jsonBody) {

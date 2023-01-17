@@ -18,17 +18,30 @@ final heroStatResultsProvider = FutureProvider<List<HeroStats>>((ref) async {
   final sortingType = ref.watch(heroSortingProvider);
   final results = await repo.getStats();
 
-  if (sortingType == HeroSortTypes.winRate) {
-    return await _computeSort(results);
-  }
-  return results;
+  return await _computeSort(results, sortingType);
 });
 
-Future<List<HeroStats>> _computeSort(List<HeroStats> results) {
-  return compute(_sort, results);
+Future<List<HeroStats>> _computeSort(
+    List<HeroStats> results, HeroSortTypes type) {
+  switch (type) {
+    case HeroSortTypes.name:
+      return compute(_nameSort, results);
+    case HeroSortTypes.winRate:
+      return compute(_winRateSort, results);
+    default:
+      return compute(_nameSort, results);
+  }
 }
 
-List<HeroStats> _sort(List<HeroStats> results) {
+List<HeroStats> _nameSort(List<HeroStats> results) {
+  final List<HeroStats> toSort = List.from(results);
+  toSort.sort(
+    (a, b) => a.name.compareTo(b.name),
+  );
+  return toSort;
+}
+
+List<HeroStats> _winRateSort(List<HeroStats> results) {
   final List<HeroStats> toSort = List.from(results);
   toSort.sort(
     (a, b) => b.winRate.compareTo(a.winRate),

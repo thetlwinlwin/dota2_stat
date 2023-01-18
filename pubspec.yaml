@@ -71,7 +71,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - loading.gif
-    - mock_herostat.json
     - steam_logo.png
     - assets/game_mode.json
     - assets/lobby_type.json

@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:dota2_stat_river/features/app_drawer/app_drawer.dart';
 import 'package:dota2_stat_river/providers/game_constants_service.dart';
 import 'package:dota2_stat_river/utils/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../providers/recents_api_service.dart';
 import '../../shared/widgets/app_bar.dart';
@@ -30,72 +29,140 @@ class RecentBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final result = ref.watch(recentMatchesProvider);
-    final constants = ref.watch(gameConstantsProvider).value;
-    final smallTxtTheme = Theme.of(context).textTheme.bodySmall;
 
     return result.when(
       data: (recentMatches) => ListView.separated(
+        itemCount: recentMatches.length,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         separatorBuilder: (BuildContext context, int index) => const Divider(),
         itemBuilder: (context, index) {
           final recent = recentMatches[index];
-          final String lobbyType = constants?.getType(
-                lobbyTypeNum: recent.lobbyType,
-              ) ??
-              'Unknown';
-          final String gameMode = constants?.getMode(
-                modeNum: recent.gameMode,
-              ) ??
-              'Unknown';
-          final imgUrl =
-              ref.watch(heroImgUrlProvider(recent.heroId)).valueOrNull;
 
           return ListTile(
             minLeadingWidth: 60,
             leading: SizedBox(
               width: 60,
-              child: _LeadingImg(url: imgUrl),
+              child: _LeadingImg(id: recent.heroId),
             ),
-            trailing: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _WinLoseTxt(
-                  winOrLose: recent.getResult,
-                ),
-                Text(
-                  lobbyType,
-                  style: smallTxtTheme,
-                ),
-              ],
+            trailing: _WinLoseTxt(winOrLose: recent.getResult),
+            title: _TitleTxt(
+              partSizeTxt: recent.getPartySize,
+              side: recent.getTeam,
             ),
-            title: Row(
-              children: [
-                Expanded(flex: 1, child: Text(recent.getTeam)),
-                Expanded(flex: 2, child: Text(gameMode)),
-              ],
-            ),
-            minVerticalPadding: 8,
-            subtitle: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: _PartySize(partySizeTxt: recent.getPartySize),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    recent.getTime,
-                    style: smallTxtTheme,
-                  ),
-                ),
-              ],
+            subtitle: _ConstantsSubTitleTxt(
+              gameMode: recent.gameMode,
+              lobbyType: recent.lobbyType,
+              startingTime: recent.getTime,
             ),
           );
         },
-        itemCount: recentMatches.length,
       ),
       loading: () => const Center(child: CircularProgressIndicator.adaptive()),
       error: (message, _) => Center(child: Text(message.toString())),
+    );
+  }
+}
+
+class _LeadingImg extends ConsumerWidget {
+  final int id;
+  const _LeadingImg({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imgUrl = ref.watch(heroImgUrlProvider(id)).valueOrNull;
+    return imgUrl != null
+        ? CachedNetworkImage(
+            imageUrl: '$kImgBaseUrl$imgUrl',
+            fit: BoxFit.fill,
+            errorWidget: (context, url, error) => const Center(
+              child: Icon(
+                Icons.error_outline_sharp,
+                size: 30,
+              ),
+            ),
+          )
+        : const Center(
+            child: Icon(
+              Icons.error_outline_sharp,
+              size: 30,
+            ),
+          );
+  }
+}
+
+class _TitleTxt extends StatelessWidget {
+  final String side;
+  final String partSizeTxt;
+  const _TitleTxt({
+    Key? key,
+    required this.side,
+    required this.partSizeTxt,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 2,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.people_outline),
+              Text(partSizeTxt),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: Text(side),
+        )
+      ],
+    );
+  }
+}
+
+class _ConstantsSubTitleTxt extends ConsumerWidget {
+  final String startingTime;
+  final int lobbyType;
+  final int gameMode;
+  const _ConstantsSubTitleTxt({
+    required this.startingTime,
+    required this.lobbyType,
+    required this.gameMode,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final smallTxtStyle = Theme.of(context).textTheme.bodySmall;
+    final constants = ref.watch(gameConstantsProvider).valueOrNull;
+    final getLobbyType =
+        constants?.getType(lobbyTypeNum: lobbyType) ?? 'Unknown';
+    final getGameMode = constants?.getMode(modeNum: gameMode) ?? 'Unknown';
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Text(getLobbyType),
+            ),
+            Expanded(
+              flex: 3,
+              child: Text(getGameMode),
+            ),
+          ],
+        ),
+        Text(
+          startingTime,
+          style: smallTxtStyle,
+        ),
+      ],
     );
   }
 }
@@ -109,57 +176,18 @@ class _WinLoseTxt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      winOrLose ? 'Win' : 'Lose',
-      style: TextStyle(
-        color: winOrLose ? Colors.green : Colors.red,
-        fontWeight: FontWeight.w600,
-        fontSize: 16,
-      ),
-    );
-  }
-}
-
-class _PartySize extends StatelessWidget {
-  final String partySizeTxt;
-  const _PartySize({
-    Key? key,
-    required this.partySizeTxt,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Icon(Icons.people_outline),
-        Text(partySizeTxt),
+        Text(
+          winOrLose ? 'Win' : 'Lose',
+          style: TextStyle(
+            color: winOrLose ? Colors.green : Colors.red,
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+          ),
+        ),
       ],
     );
-  }
-}
-
-class _LeadingImg extends StatelessWidget {
-  final String? url;
-  const _LeadingImg({
-    Key? key,
-    required this.url,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return url != null
-        ? CachedNetworkImage(
-            imageUrl: '$kImgBaseUrl$url',
-            fit: BoxFit.fill,
-            errorWidget: (context, url, error) => const Icon(
-              Icons.error_outline_sharp,
-              size: 12,
-            ),
-          )
-        : const Icon(
-            Icons.error_outline_sharp,
-            size: 12,
-          );
   }
 }

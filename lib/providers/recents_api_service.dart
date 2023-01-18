@@ -15,9 +15,7 @@ final recentMatchesProvider = FutureProvider<List<RecentMatches>>((ref) async {
 
 final heroImgUrlProvider = FutureProvider.family<String?, int>((ref, id) async {
   final results = ref.watch(heroStatResultsProvider).valueOrNull;
-  if (results != null && results.isNotEmpty) {
-    final heroStats = results.firstWhere((element) => element.id == id);
-    return heroStats.img;
-  }
-  return null;
+
+  final heroStats = results?.firstWhere((element) => element.id == id);
+  return heroStats?.img;
 });

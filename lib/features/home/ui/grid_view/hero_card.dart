@@ -15,40 +15,36 @@ class HeroCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: InkWell(
-        onTap: () => print('hi'),
-        onHover: (value) {},
-        child: Stack(
-          children: [
-            Ink.image(
-              image: CachedNetworkImageProvider('$kImgBaseUrl${stat.img}'),
-              fit: BoxFit.fill,
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).backgroundColor.withOpacity(0.7),
-                ),
-                child: Column(
-                  children: [
-                    RotateText(
-                      textList: [
-                        stat.name,
-                        '${stat.winRate.toStringAsPrecision(4)}%',
-                      ],
-                      duration: const Duration(seconds: 2),
-                      style: Theme.of(context).textTheme.bodyText1!,
-                    ),
-                  ],
-                ),
+      child: Stack(
+        children: [
+          Ink.image(
+            image: CachedNetworkImageProvider('$kImgBaseUrl${stat.img}'),
+            fit: BoxFit.fill,
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Theme.of(context).backgroundColor.withOpacity(0.7),
               ),
-            )
-          ],
-        ),
+              child: Column(
+                children: [
+                  RotateText(
+                    textList: [
+                      stat.name,
+                      '${stat.winRate.toStringAsPrecision(4)}%',
+                    ],
+                    duration: const Duration(seconds: 2),
+                    style: Theme.of(context).textTheme.bodyText1!,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

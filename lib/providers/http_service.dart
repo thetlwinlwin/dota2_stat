@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,6 +20,21 @@ class Repository {
       if (callResult.statusCode == 200) {
         final data = callResult.body;
         return await HeroStats.getJson(data);
+      } else {
+        throw GenericException(callResult.body);
+      }
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  Future<int> getLatestPatchId() async {
+    try {
+      final callResult = await _client.get(Uri.parse(kPatchIdUrl));
+      if (callResult.statusCode == 200) {
+        final data = callResult.body;
+        final result = List.from(jsonDecode(data));
+        return result.last['id'];
       } else {
         throw GenericException(callResult.body);
       }

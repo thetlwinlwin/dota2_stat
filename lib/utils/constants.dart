@@ -4,3 +4,5 @@ const String kIdBaseUrl = 'https://api.opendota.com/api/players/';
 
 String kRecentUrl({required String id}) =>
     'https://api.opendota.com/api/players/$id/recentMatches';
+
+const String kPatchIdUrl = 'https://api.opendota.com/api/constants/patch';

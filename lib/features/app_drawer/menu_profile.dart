@@ -1,4 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dota2_stat_river/features/shared/widgets/profile_avatar.dart';
+import 'package:dota2_stat_river/features/shared/widgets/profile_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -44,25 +45,20 @@ class _ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String url = result.profile!.avatarmedium ?? '';
-    final theme = Theme.of(context).textTheme;
+    final url = result.profile?.avatarmedium;
+    final theme = Theme.of(context);
     return ProfileCardContainer(
       isCenter: false,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CircleAvatar(
-            backgroundImage:
-                url.isEmpty ? null : CachedNetworkImageProvider(url),
-            backgroundColor: Colors.transparent,
-          ),
+          ProfileAvatar(imgUrl: url),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: FittedBox(
-              child: Text(
-                result.profile?.personaname ?? ' ',
-                style: theme.headline4
-                    ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+            child: ProfileName(
+              name: result.profile?.personaname,
+              style: theme.textTheme.headline4?.copyWith(
+                color: theme.colorScheme.onPrimary,
               ),
             ),
           ),
@@ -73,8 +69,8 @@ class _ProfileCard extends StatelessWidget {
           ),
           Text(
             'current MMR : ${result.competitiveRank ?? 'none'}',
-            style: theme.bodyText1
-                ?.copyWith(color: Theme.of(context).colorScheme.onPrimary),
+            style: theme.textTheme.bodyText1
+                ?.copyWith(color: theme.colorScheme.onPrimary),
           ),
         ],
       ),

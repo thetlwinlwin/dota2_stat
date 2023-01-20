@@ -1,3 +1,4 @@
+import 'package:dota2_stat_river/features/stats/provider/patch_provider.dart';
 import 'package:dota2_stat_river/providers/game_constants_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +21,7 @@ class _LoadingPageState extends ConsumerState<LoadingPage> {
       final data = ref.read(userDataStateNotifierProvider);
       ref.read(appstateNotifierProvider.notifier).loadData(data: data);
       ref.read(gameConstantsProvider);
+      ref.read(getLatestPatchIdProvider);
     });
   }
 

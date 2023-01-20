@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final gameConstantsProvider = FutureProvider<GameConstants>((ref) async {
   final gameMode = await rootBundle.loadString('assets/game_mode.json');
   final lobbyType = await rootBundle.loadString('assets/lobby_type.json');
-  final Map<String, String> modeResult = Map.castFrom(json.decode(gameMode));
-  final Map<String, String> typeResult = Map.castFrom(json.decode(lobbyType));
+  final Map<String, String> modeResult = Map.from(json.decode(gameMode));
+  final Map<String, String> typeResult = Map.from(json.decode(lobbyType));
 
   return GameConstants(
     gameMode: modeResult,

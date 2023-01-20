@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dota2_stat_river/features/shared/models/api_models/player_stats_api_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,6 +21,27 @@ class Repository {
       if (callResult.statusCode == 200) {
         final data = callResult.body;
         return await HeroStats.getJson(data);
+      } else {
+        throw GenericException(callResult.body);
+      }
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  Future<PlayerStats> getPlayerStats(
+      {required String steamId, String? patchId}) async {
+    final Uri playerStatsUri = Uri(
+      scheme: 'https',
+      host: 'api.opendota.com',
+      path: 'api/players/$steamId/counts',
+      queryParameters: patchId != null ? {'patch': patchId} : null,
+    );
+    try {
+      final callResult = await _client.get(playerStatsUri);
+      if (callResult.statusCode == 200) {
+        final data = callResult.body;
+        return await PlayerStats.getJson(data);
       } else {
         throw GenericException(callResult.body);
       }

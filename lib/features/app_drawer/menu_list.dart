@@ -32,12 +32,7 @@ class _MenuItems extends StatefulWidget {
 class __MenuItemsState extends State<_MenuItems>
     with SingleTickerProviderStateMixin {
   late AnimationController _staggerController;
-
-  static List<String> menuTitles = [
-    AppRoutes.home.name,
-    AppRoutes.subRecents.name,
-    AppRoutes.subStats.name
-  ];
+  static List<String> menuTitles = AppRoutes.appDrawerRoutes();
   static const _initialDelayTime = Duration(milliseconds: 100);
   static const _itemSlideTime = Duration(milliseconds: 500);
   static const _staggerTime = Duration(milliseconds: 100);
@@ -54,7 +49,7 @@ class __MenuItemsState extends State<_MenuItems>
   }
 
   void _createAnimationIntervals() {
-    for (var i = 0; i < menuTitles.length; ++i) {
+    for (int i = 0; i < AppRoutes.appDrawerRoutes().length; ++i) {
       final startTime = _initialDelayTime + (_staggerTime * i);
       final endTime = startTime + _itemSlideTime;
       _itemSlideIntervals.add(
@@ -81,7 +76,7 @@ class __MenuItemsState extends State<_MenuItems>
 
   List<Widget> _buildListItems() {
     final listItems = <Widget>[];
-    for (var i = 0; i < menuTitles.length; i++) {
+    for (int i = 0; i < menuTitles.length; i++) {
       listItems.add(
         AnimatedBuilder(
           animation: _staggerController,

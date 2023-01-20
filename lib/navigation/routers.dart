@@ -56,29 +56,29 @@ class AppRouter extends ChangeNotifier {
   List<GoRoute> get _routes => [
         GoRoute(
           path: AppRoutes.loading.path,
-          name: AppRoutes.loading.name,
+          name: AppRoutes.loading.pathName,
           builder: (_, __) => const LoadingPage(),
         ),
         GoRoute(
           path: AppRoutes.home.path,
-          name: AppRoutes.home.name,
+          name: AppRoutes.home.pathName,
           builder: (_, __) => const HomePage(),
           routes: [
             GoRoute(
               path: AppRoutes.subStats.path,
-              name: AppRoutes.subStats.name,
+              name: AppRoutes.subStats.pathName,
               builder: (__, _) => const StatsPage(),
             ),
             GoRoute(
               path: AppRoutes.subRecents.path,
-              name: AppRoutes.subRecents.name,
+              name: AppRoutes.subRecents.pathName,
               builder: (__, _) => const RecentPage(),
             ),
           ],
         ),
         GoRoute(
           path: '${AppRoutes.error.path}/:text',
-          name: AppRoutes.error.name,
+          name: AppRoutes.error.pathName,
           builder: (_, state) {
             final errorText = state.params['text'];
             return ErrorPage(
@@ -91,7 +91,7 @@ class AppRouter extends ChangeNotifier {
         ),
         GoRoute(
           path: AppRoutes.login.path,
-          name: AppRoutes.login.name,
+          name: AppRoutes.login.pathName,
           builder: (_, state) => const LoginPage(),
         ),
       ];
@@ -106,6 +106,12 @@ enum AppRoutes {
   subRecents('recents', 'recents');
 
   final String path;
-  final String name;
-  const AppRoutes(this.path, this.name);
+  final String pathName;
+  const AppRoutes(this.path, this.pathName);
+
+  static List<String> appDrawerRoutes() => [
+        AppRoutes.home.pathName,
+        AppRoutes.subRecents.pathName,
+        AppRoutes.subStats.pathName,
+      ];
 }

@@ -15,6 +15,8 @@ class GridBody extends ConsumerWidget {
     return state.when(
       data: (topheroes) {
         return GridView.builder(
+          addAutomaticKeepAlives: false,
+          addRepaintBoundaries: false,
           padding: const EdgeInsets.all(10),
           itemCount: topheroes.length,
           gridDelegate: _gridDelegate(),

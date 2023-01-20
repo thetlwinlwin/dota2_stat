@@ -15,6 +15,8 @@ class RecentBody extends ConsumerWidget {
 
     return result.when(
       data: (recentMatches) => ListView.separated(
+        addAutomaticKeepAlives: false,
+        addRepaintBoundaries: false,
         itemCount: recentMatches.length,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         separatorBuilder: (BuildContext context, int index) => const Divider(),

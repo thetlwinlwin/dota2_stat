@@ -40,6 +40,10 @@ A new Flutter project.
 - preload idstat future provider in home page.
 
 
+## Warnings
+- player_stats_api.dart, game_mode.json and lobby_type.json heavily depends on source API.
+
+
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.

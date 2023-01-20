@@ -8,5 +8,11 @@
     "6": "ranked_solo_mm",
     "7": "ranked",
     "8": "1v1_mid",
-    "9": "battle_cup"
+    "9": "battle_cup",
+    "10": "local_bots",
+    "11": "spectator",
+    "12": "event",
+    "13": "gauntlet",
+    "14": "new_player",
+    "15": "featured"
 }

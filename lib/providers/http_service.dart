@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dota2_stat_river/features/shared/models/api_models/most_played_hero.dart';
 import 'package:dota2_stat_river/features/shared/models/api_models/player_stats_api_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -21,6 +22,37 @@ class Repository {
       if (callResult.statusCode == 200) {
         final data = callResult.body;
         return await HeroStats.getJson(data);
+      } else {
+        throw GenericException(callResult.body);
+      }
+    } on NetworkException catch (_) {
+      rethrow;
+    }
+  }
+
+  Future<List<PlayerMostPlayedHeroes>> getPlayerMostPlayedHeroes({
+    String? patchId,
+    int limit = 5,
+    required String steamId,
+  }) async {
+    final Uri mostPlayedHeroesUri = Uri(
+      scheme: 'https',
+      host: 'api.opendota.com',
+      path: 'api/players/$steamId/heroes',
+      queryParameters: patchId != null ? {'patch': patchId} : null,
+    );
+    try {
+      final callResult = await _client.get(mostPlayedHeroesUri);
+      if (callResult.statusCode == 200) {
+        final data = callResult.body;
+        final result = PlayerMostPlayedHeroes.decodeAndParse(
+          data,
+          limit: limit,
+        );
+        if (result.isEmpty) {
+          throw NoRecentException();
+        }
+        return result;
       } else {
         throw GenericException(callResult.body);
       }

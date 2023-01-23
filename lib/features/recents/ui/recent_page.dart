@@ -11,7 +11,7 @@ class RecentPage extends StatelessWidget {
     return Scaffold(
       endDrawer: const AppDrawer(),
       appBar: MyCustomAppBar(
-        titleText: 'Recents',
+        appBarTitle: AppBarTitle.recent,
       ),
       body: const SafeArea(child: RecentBody()),
     );

@@ -33,7 +33,7 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: MyCustomAppBar(
-        titleText: 'Home',
+        appBarTitle: AppBarTitle.home,
         widgets: const [HeroSortbtn()],
       ),
       endDrawer: const AppDrawer(),

@@ -1,7 +1,6 @@
+import 'package:dota2_stat_river/features/home/provider/hero_sorting_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../providers/herostat_api_service.dart';
 
 class HeroSortbtn extends ConsumerWidget {
   const HeroSortbtn({super.key});

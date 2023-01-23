@@ -1,4 +1,6 @@
+import 'package:dota2_stat_river/features/app_drawer/app_drawer.dart';
 import 'package:dota2_stat_river/features/shared/widgets/app_bar.dart';
+import 'package:dota2_stat_river/features/stats/ui/stats_body.dart';
 import 'package:flutter/material.dart';
 
 class StatsPage extends StatelessWidget {
@@ -7,10 +9,9 @@ class StatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyCustomAppBar(titleText: 'Stats'),
-      body: const Center(
-        child: Text('Stats'),
-      ),
+      appBar: MyCustomAppBar(appBarTitle: AppBarTitle.stats),
+      endDrawer: const AppDrawer(),
+      body: const StatBody(),
     );
   }
 }

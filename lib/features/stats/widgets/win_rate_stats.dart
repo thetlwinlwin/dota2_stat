@@ -10,6 +10,11 @@ class WinRate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final winRateStyle = TextStyle(
+      fontSize: 18,
+      color: Theme.of(context).colorScheme.primary,
+      fontWeight: FontWeight.w800,
+    );
     return Row(
       children: isRadiant.winLose.entries
           .map<Widget>(
@@ -19,7 +24,10 @@ class WinRate extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(e.key),
+                  Text(
+                    e.key,
+                    style: winRateStyle,
+                  ),
                   const SizedBox(height: 5),
                   Text(e.value),
                 ],

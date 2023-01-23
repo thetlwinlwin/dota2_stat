@@ -20,7 +20,7 @@ class LeadingImg extends ConsumerWidget {
         final stat = data.firstWhere((element) => element.id == id);
         return CachedNetworkImage(
           imageUrl: '$kImgBaseUrl${stat.img}',
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           errorWidget: (context, url, error) => const Center(
             child: Icon(
               Icons.error_outline_sharp,

@@ -1,5 +1,5 @@
 import 'package:dota2_stat_river/features/recents/widgets/const_subtitle_txt.dart';
-import 'package:dota2_stat_river/features/recents/widgets/leading_img.dart';
+import 'package:dota2_stat_river/features/shared/widgets/leading_img.dart';
 import 'package:dota2_stat_river/features/recents/widgets/title_txt.dart';
 import 'package:dota2_stat_river/features/recents/widgets/win_lose_txt.dart';
 import 'package:dota2_stat_river/providers/recents_api_service.dart';

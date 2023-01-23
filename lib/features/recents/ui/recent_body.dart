@@ -27,7 +27,12 @@ class RecentBody extends ConsumerWidget {
             minLeadingWidth: 60,
             leading: SizedBox(
               width: 60,
-              child: LeadingImg(id: recent.heroId),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LeadingImg(id: recent.heroId),
+                ],
+              ),
             ),
             trailing: WinLoseTxt(winOrLose: recent.getResult),
             title: TitleTxt(

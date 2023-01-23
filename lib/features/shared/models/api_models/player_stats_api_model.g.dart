@@ -49,14 +49,22 @@ _$_LobbyType _$$_LobbyTypeFromJson(Map<String, dynamic> json) => _$_LobbyType(
           : GameWinStatus.fromJson(json['9'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_LobbyTypeToJson(_$_LobbyType instance) =>
-    <String, dynamic>{
-      '0': instance.normal?.toJson(),
-      '5': instance.rankedTeam?.toJson(),
-      '6': instance.rankedSolo?.toJson(),
-      '7': instance.ranked?.toJson(),
-      '9': instance.battleCup?.toJson(),
-    };
+Map<String, dynamic> _$$_LobbyTypeToJson(_$_LobbyType instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('0', instance.normal?.toJson());
+  writeNotNull('5', instance.rankedTeam?.toJson());
+  writeNotNull('6', instance.rankedSolo?.toJson());
+  writeNotNull('7', instance.ranked?.toJson());
+  writeNotNull('9', instance.battleCup?.toJson());
+  return val;
+}
 
 _$_GameMode _$$_GameModeFromJson(Map<String, dynamic> json) => _$_GameMode(
       unknown: json['0'] == null
@@ -97,21 +105,29 @@ _$_GameMode _$$_GameModeFromJson(Map<String, dynamic> json) => _$_GameMode(
           : GameWinStatus.fromJson(json['23'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_GameModeToJson(_$_GameMode instance) =>
-    <String, dynamic>{
-      '0': instance.unknown?.toJson(),
-      '1': instance.allPick?.toJson(),
-      '2': instance.captainMode?.toJson(),
-      '3': instance.randomDraft?.toJson(),
-      '4': instance.singleDraft?.toJson(),
-      '5': instance.allRandom?.toJson(),
-      '15': instance.custom?.toJson(),
-      '16': instance.captainsDraft?.toJson(),
-      '18': instance.abilityDraft?.toJson(),
-      '19': instance.event?.toJson(),
-      '22': instance.allDraft?.toJson(),
-      '23': instance.turbo?.toJson(),
-    };
+Map<String, dynamic> _$$_GameModeToJson(_$_GameMode instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('0', instance.unknown?.toJson());
+  writeNotNull('1', instance.allPick?.toJson());
+  writeNotNull('2', instance.captainMode?.toJson());
+  writeNotNull('3', instance.randomDraft?.toJson());
+  writeNotNull('4', instance.singleDraft?.toJson());
+  writeNotNull('5', instance.allRandom?.toJson());
+  writeNotNull('15', instance.custom?.toJson());
+  writeNotNull('16', instance.captainsDraft?.toJson());
+  writeNotNull('18', instance.abilityDraft?.toJson());
+  writeNotNull('19', instance.event?.toJson());
+  writeNotNull('22', instance.allDraft?.toJson());
+  writeNotNull('23', instance.turbo?.toJson());
+  return val;
+}
 
 _$_GameWinStatus _$$_GameWinStatusFromJson(Map<String, dynamic> json) =>
     _$_GameWinStatus(

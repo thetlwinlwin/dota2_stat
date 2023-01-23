@@ -34,7 +34,10 @@ class PlayerStats with _$PlayerStats {
 @Freezed()
 class IsRadiant with _$IsRadiant {
   const IsRadiant._();
-  @JsonSerializable(explicitToJson: true)
+  @JsonSerializable(
+    explicitToJson: true,
+    includeIfNull: false,
+  )
   const factory IsRadiant({
     @JsonKey(name: '0') required GameWinStatus dire,
     @JsonKey(name: '1') required GameWinStatus radiant,
@@ -42,12 +45,22 @@ class IsRadiant with _$IsRadiant {
 
   factory IsRadiant.fromJson(Map<String, dynamic> json) =>
       _$IsRadiantFromJson(json);
+
+  Map<String, String> get winLose => {
+        'win': '${dire.win + radiant.win}',
+        'lose': '${dire.lose + radiant.lose}',
+        'winRate':
+            '${((radiant.winRate + dire.winRate) / 2).toStringAsFixed(2)}%',
+      };
 }
 
 @Freezed()
 class LobbyType with _$LobbyType {
   const LobbyType._();
-  @JsonSerializable(explicitToJson: true)
+  @JsonSerializable(
+    explicitToJson: true,
+    includeIfNull: false,
+  )
   const factory LobbyType({
     @JsonKey(name: '0') required GameWinStatus? normal,
     @JsonKey(name: '5') required GameWinStatus? rankedTeam,
@@ -63,7 +76,10 @@ class LobbyType with _$LobbyType {
 @Freezed()
 class GameMode with _$GameMode {
   const GameMode._();
-  @JsonSerializable(explicitToJson: true)
+  @JsonSerializable(
+    explicitToJson: true,
+    includeIfNull: false,
+  )
   const factory GameMode({
     @JsonKey(name: '0') GameWinStatus? unknown,
     @JsonKey(name: '1') GameWinStatus? allPick,
@@ -94,4 +110,7 @@ class GameWinStatus with _$GameWinStatus {
 
   factory GameWinStatus.fromJson(Map<String, dynamic> json) =>
       _$GameWinStatusFromJson(json);
+
+  int get lose => games - win;
+  double get winRate => (win / games) * 100;
 }

@@ -360,7 +360,7 @@ class __$$_IsRadiantCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class _$_IsRadiant extends _IsRadiant with DiagnosticableTreeMixin {
   const _$_IsRadiant(
       {@JsonKey(name: '0') required this.dire,
@@ -655,7 +655,7 @@ class __$$_LobbyTypeCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class _$_LobbyType extends _LobbyType with DiagnosticableTreeMixin {
   const _$_LobbyType(
       {@JsonKey(name: '0') required this.normal,
@@ -1188,7 +1188,7 @@ class __$$_GameModeCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class _$_GameMode extends _GameMode with DiagnosticableTreeMixin {
   const _$_GameMode(
       {@JsonKey(name: '0') this.unknown,

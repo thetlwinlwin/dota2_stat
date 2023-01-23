@@ -1,17 +1,8 @@
+import 'package:dota2_stat_river/features/home/provider/hero_sorting_provider.dart';
 import 'package:dota2_stat_river/features/shared/models/api_models/herostat_api_model.dart';
+import 'package:dota2_stat_river/providers/http_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'http_service.dart';
-
-enum HeroSortTypes {
-  name,
-  winRate,
-}
-
-final heroSortingProvider = StateProvider<HeroSortTypes>((ref) {
-  return HeroSortTypes.name;
-});
 
 final heroStatResultsProvider = FutureProvider<List<HeroStats>>((ref) async {
   final repo = ref.watch(repositoryProvider);

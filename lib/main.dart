@@ -8,6 +8,9 @@ import 'providers/load_local_shared.dart';
 import 'providers/setting_service.dart';
 import 'utils/theme.dart';
 
+// ignore: depend_on_referenced_packages
+import 'package:flutter_web_plugins/url_strategy.dart';
+
 class Logger extends ProviderObserver {
   @override
   void didUpdateProvider(
@@ -35,11 +38,9 @@ void main() async {
   //   ],
   //   child: const MyApp(),
   // ));
+  usePathUrlStrategy();
   runApp(
     ProviderScope(
-      observers: [
-        Logger(),
-      ],
       overrides: [sharedProvider.overrideWithValue(sharedPreferences)],
       child: const MyApp(),
     ),

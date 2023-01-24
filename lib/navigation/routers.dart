@@ -35,18 +35,46 @@ class AppRouter extends ChangeNotifier {
     final currentState = _ref.read(appstateNotifierProvider);
     final isIniting = currentState.doneInit;
     final isLoggedIn = currentState.isLoggedin;
+    final queryParams = Map<String, String>.from(state.queryParams);
 
     if (!isIniting && state.subloc != AppRoutes.loading.path) {
-      return state.namedLocation('loading');
+      queryParams['from'] = state.subloc;
+      queryParams['next'] = AppRoutes.login.path;
+      return Uri(
+        path: AppRoutes.loading.path,
+        queryParameters: queryParams,
+      ).toString();
+    }
+
+    if (isIniting && !isLoggedIn && state.subloc == AppRoutes.loading.path) {
+      final from = queryParams.remove('from');
+      return Uri(path: from).toString();
+    }
+
+    if (isIniting && isLoggedIn && state.subloc == AppRoutes.loading.path) {
+      final from = queryParams.remove('from');
+      return Uri(path: from).toString();
     }
 
     if (isIniting && !isLoggedIn && state.subloc != AppRoutes.login.path) {
-      return state.namedLocation('login');
+      return state.namedLocation(AppRoutes.login.pathName);
     }
-    if ((isIniting && state.subloc == AppRoutes.loading.path) ||
-        (isLoggedIn && state.subloc == AppRoutes.login.path)) {
-      return state.namedLocation('home');
+
+    if (isLoggedIn && state.subloc == AppRoutes.login.path) {
+      return Uri(path: AppRoutes.home.path).toString();
     }
+
+    // if (!isIniting && state.subloc != AppRoutes.loading.path) {
+    //   return state.namedLocation('loading');
+    // }
+
+    // if (isIniting && !isLoggedIn && state.subloc != AppRoutes.login.path) {
+    //   return state.namedLocation('login');
+    // }
+    // if ((isIniting && state.subloc == AppRoutes.loading.path) ||
+    //     (isLoggedIn && state.subloc == AppRoutes.login.path)) {
+    //   return state.namedLocation('home');
+    // }
     return null;
   }
 

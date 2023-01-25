@@ -79,6 +79,7 @@ class MyApp extends ConsumerWidget {
         ref.watch(settingDataProvider.select((value) => value.isDark));
     final GoRouter myRouter = ref.watch(routerProvider);
     return MaterialApp.router(
+    debugShowCheckedModeBanner: false,
       routerConfig: myRouter,
       darkTheme: mydarkTheme,
       theme: mylightTheme,

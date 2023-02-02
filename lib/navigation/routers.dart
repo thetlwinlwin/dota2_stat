@@ -1,3 +1,4 @@
+import 'package:dota2_stat_river/providers/idstat_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -24,10 +25,22 @@ final routerProvider = Provider<GoRouter>((ref) {
 
 class AppRouter extends ChangeNotifier {
   final Ref _ref;
+  bool _isGuest = true;
 
   AppRouter(this._ref) {
     _ref.listen(appstateNotifierProvider, (_, __) {
       notifyListeners();
+    });
+    _ref.listen(idStatProvider, (_, next) {
+      final playerAcc = next.valueOrNull;
+
+      if (playerAcc != null && playerAcc.profile != null) {
+        final isPlayerNameGuest = playerAcc.profile!.personaname == 'Guest';
+        if (isPlayerNameGuest != _isGuest) {
+          _isGuest = isPlayerNameGuest;
+          notifyListeners();
+        }
+      }
     });
   }
 
@@ -53,6 +66,9 @@ class AppRouter extends ChangeNotifier {
 
     if (isIniting && isLoggedIn && state.subloc == AppRoutes.loading.path) {
       final from = queryParams.remove('from');
+      if (_isGuest && AppRoutes.accountOnlyRoutes().contains(from)) {
+        return Uri(path: AppRoutes.home.path).toString();
+      }
       return Uri(path: from).toString();
     }
 
@@ -141,5 +157,10 @@ enum AppRoutes {
         AppRoutes.home.pathName,
         AppRoutes.subRecents.pathName,
         AppRoutes.subStats.pathName,
+      ];
+
+  static List<String> accountOnlyRoutes() => [
+        '${AppRoutes.home.path}/${AppRoutes.subRecents.path}',
+        '${AppRoutes.home.path}/${AppRoutes.subStats.path}',
       ];
 }
